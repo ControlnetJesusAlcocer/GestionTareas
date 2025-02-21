@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { TareaService } from '../tarea.service';
+
+@Component({
+  selector: 'app-listado-tareas',
+  templateUrl: './listado-tareas.component.html',
+  styleUrls: ['./listado-tareas.component.css']
+})
+export class ListadoTareasComponent implements OnInit {
+  nuevaTarea: string = '';
+
+  constructor(public tareaService: TareaService) { }
+
+  ngOnInit(): void {
+  }
+
+  agregarTarea(): void {
+    if (this.nuevaTarea) {
+      this.tareaService.agregarTarea(this.nuevaTarea);
+      this.nuevaTarea = '';  // Limpiar el input después de agregar la tarea
+    }
+  }
+
+  eliminarTarea(tarea: string): void {
+    this.tareaService.eliminarTarea(tarea);
+  }
+}
