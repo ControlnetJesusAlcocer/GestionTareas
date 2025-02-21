@@ -1,0 +1,38 @@
+ng new tarea-app
+cd tarea-app
+ng generate component inicio
+ng generate component listado-tareas
+
+import { Injectable } from  '@angular/core';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TareaService {
+  tareas: string[] = [];
+
+  constructor() { }
+
+  // Método para agregar una tarea
+  agregarTarea(tarea: string): void {
+    if (tarea) {
+      this.tareas.push(tarea);
+    }
+  }
+
+  // Método para eliminar una tarea
+  eliminarTarea(tarea: string): void {
+    this.tareas = this.tareas.filter(t => t !== tarea);
+  }
+
+  // Método para obtener las tareas
+  obtenerTareas(): string[] {
+    return this.tareas;
+  }
+
+  // Método para obtener la cantidad de tareas pendientes
+  obtenerCantidadTareas(): number {
+    return this.tareas.length;
+  }
+}
