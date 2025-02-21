@@ -1,0 +1,19 @@
+<div class="listado-tareas">
+  <h1>Listado de Tareas</h1>
+  <input [(ngModel)]="nuevaTarea" placeholder="Añadir nueva tarea" />
+  <button (click)="agregarTarea()">Agregar</button>
+
+  <ul>
+    <li *ngFor="let tarea of tareaService.obtenerTareas()">
+      {{ tarea }}
+      <button (click)="eliminarTarea(tarea)">Eliminar</button>
+    </li>
+  </ul>
+
+  <div *ngIf="tareaService.obtenerCantidadTareas() === 0">
+    No hay tareas pendientes
+  </div>
+  <div *ngIf="tareaService.obtenerCantidadTareas() > 0">
+    Cantidad de tareas pendientes: {{ tareaService.obtenerCantidadTareas() }}
+  </div>
+</div>
